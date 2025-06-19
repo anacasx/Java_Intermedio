@@ -1,6 +1,7 @@
 package Sesion_01.Reto_01;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 abstract class OrdenProduccion {
@@ -31,19 +32,28 @@ abstract class OrdenProduccion {
     }
 
     public static void main(String[] args) {
-        List<OrdenProduccion> ordenes = new ArrayList<>();
-        ordenes.add(new OrdenMasa("M001", 500));
-        ordenes.add(new OrdenMasa("M002", 1000));
-        ordenes.add(new OrdenPersonalizada("P001", 200, "Cliente A"));
-        ordenes.add(new OrdenPersonalizada("P002", 150, "Cliente B"));
-        ordenes.add(new OrdenPrototipo("T001", 50, "Fase inicial"));
-        ordenes.add(new OrdenPrototipo("T002", 30, "Fase avanzada"));
+List<OrdenMasa> listaMasa = Arrays.asList(
+            new OrdenMasa("A123", 500),
+            new OrdenMasa("A124", 750)
+        );
 
-        //System.out.println("--- Mostrando todas las órdenes ---");
-        mostrarOrdenes(ordenes);
+        List<OrdenPersonalizada> listaPersonalizadas = Arrays.asList(
+            new OrdenPersonalizada("P456", 100, "ClienteX"),
+            new OrdenPersonalizada("P789", 150, "ClienteY")
+        );
 
-        System.out.println("\nProcesando órdenes personalizadas...");
-        procesarPersonalizadas(ordenes, 300);
+        List<OrdenPrototipo> listaPrototipos = Arrays.asList(
+            new OrdenPrototipo("T789", 10, "Diseño"),
+            new OrdenPrototipo("T790", 5, "Pruebas")
+        );
+
+        // Mostrar órdenes por tipo
+        mostrarOrdenes(listaMasa);
+        mostrarOrdenes(listaPersonalizadas);
+        mostrarOrdenes(listaPrototipos);
+
+        // Procesar órdenes personalizadas
+        procesarPersonalizadas(new ArrayList<>(listaPersonalizadas), 200);
     }
 
 }
